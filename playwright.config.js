@@ -2,6 +2,13 @@
 
 import { defineConfig, devices } from '@playwright/test';
 import dotenv from 'dotenv';
+import path from 'path';
+
+// Carrega o .env se ele existir
+dotenv.config(); 
+
+// Ou force o uso da variável de ambiente diretamente
+const token = process.env.GOREST_TOKEN;
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv

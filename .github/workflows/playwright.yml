@@ -1,7 +1,11 @@
 name: Playwright Tests
 
-env:
-  GOREST_TOKEN: ${{ secrets.GOREST_TOKEN }}
+run: |
+    if [ -z "$GOREST_TOKEN" ]; then
+      echo " GOREST_TOKEN está VAZIO ou não foi encontrado"
+    else
+      echo "GOREST_TOKEN está definido (${#GOREST_TOKEN} caracteres)"
+    fi
 
 on:
   push:
@@ -13,6 +17,8 @@ jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
+    env:
+      GOREST_TOKEN: ${{ secrets.GOREST_TOKEN }}
     steps:
     - uses: actions/checkout@v4
     - uses: actions/setup-node@v4
