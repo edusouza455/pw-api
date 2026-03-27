@@ -1,18 +1,18 @@
 // @ts-check
 import { test, expect } from '@playwright/test'; 
+import { faker } from '@faker-js/faker';
 
 test.describe('Suite de Testes', () => {
 
   /** @type {number} */
   let userId;
-  const fakeEmail = `edu_qa_${Date.now()}@teste.com`
 
   test('Deve criar um novo usuário com sucesso', async ({ request }) => {
     const response = await request.post('users', {
       data: {
         name: 'Eduardo Coutinho',
         gender: 'male',
-        email: fakeEmail,
+        email: faker.internet.email(),
         status: 'active'
       }
     });
@@ -31,7 +31,7 @@ test.describe('Suite de Testes', () => {
       data: {
         name: 'Eduardo Coutinho',
         gender: 'male',
-        email: `edu_get_${Date.now()}@teste.com`,
+        email: faker.internet.email(),
         status: 'active'
       }
     });;
@@ -54,7 +54,7 @@ test.describe('Suite de Testes', () => {
       data: {
         name: 'Eduardo Coutinho',
         gender: 'male',
-        email: `edu_get_${Date.now()}@teste.com`, 
+        email: faker.internet.email(),
         status: 'active'
       }
     });
@@ -82,7 +82,7 @@ test.describe('Suite de Testes', () => {
       data: {
         name: 'Eduardo Coutinho',
         gender: 'male',
-        email: `edu_get_${Date.now()}@teste.com`, 
+        email: faker.internet.email(),
         status: 'active'
       }
     });
@@ -108,7 +108,7 @@ test.describe('Suite de Testes', () => {
       data: {
         name: '',
         gender: 'male',
-        email: fakeEmail,
+        email: faker.internet.email(),
         status: 'active'
       }
     });
