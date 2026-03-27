@@ -1,12 +1,5 @@
 name: Playwright Tests
 
-run: |
-    if [ -z "$GOREST_TOKEN" ]; then
-      echo " GOREST_TOKEN está VAZIO ou não foi encontrado"
-    else
-      echo "GOREST_TOKEN está definido (${#GOREST_TOKEN} caracteres)"
-    fi
-
 on:
   push:
     branches: [ main, master ]
@@ -21,6 +14,13 @@ jobs:
       GOREST_TOKEN: ${{ secrets.GOREST_TOKEN }}
     steps:
     - uses: actions/checkout@v4
+    - name: Debug GOREST_TOKEN
+      run: |
+        if [ -z "$GOREST_TOKEN" ]; then
+            echo " GOREST_TOKEN está VAZIO ou não foi encontrado"
+        else
+            echo "GOREST_TOKEN está definido (${#GOREST_TOKEN} caracteres)"
+        fi
     - uses: actions/setup-node@v4
       with:
         node-version: lts/*
