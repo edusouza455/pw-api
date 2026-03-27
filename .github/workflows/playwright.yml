@@ -1,4 +1,8 @@
 name: Playwright Tests
+
+env:
+  GOREST_TOKEN: ${{ secrets.GOREST_TOKEN }}
+
 on:
   push:
     branches: [ main, master ]
@@ -9,9 +13,6 @@ jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
-    env:
-      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-      GOREST_TOKEN: ${{ secrets.GOREST_TOKEN }}
     steps:
     - uses: actions/checkout@v4
     - uses: actions/setup-node@v4
