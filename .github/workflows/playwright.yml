@@ -10,7 +10,7 @@ jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
-    .env:
+    env:
       GOREST_TOKEN: ${{ secrets.GOREST_TOKEN }}
     steps:
     - uses: actions/checkout@v4
@@ -21,6 +21,15 @@ jobs:
         else
             echo "GOREST_TOKEN está definido (${#GOREST_TOKEN} caracteres)"
         fi
+    - name: Debug API response
+      env:
+        GOREST_TOKEN: ${{ secrets.GOREST_TOKEN }}
+      run: |
+        curl -s -o response.json -w "\nHTTP STATUS: %{http_code}\n" \
+          -H "Authorization: Bearer $GOREST_TOKEN" \
+          -H "Accept: application/json" \
+          https://gorest.co.in/public/v2/users
+        cat response.json
     - uses: actions/setup-node@v4
       with:
         node-version: lts/*
