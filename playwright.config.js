@@ -9,11 +9,6 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-if (!process.env.GOREST_TOKEN) {
-  console.error("ERRO CRÍTICO: GOREST_TOKEN não foi encontrado nas variáveis de ambiente!");
-  console.error("No GitHub Actions, verifique se o token foi salvo em 'Repository secrets'.");
-}
-
 /**
  * @see https://playwright.dev/docs/test-configuration
  */
