@@ -10,7 +10,7 @@ jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
-    env:
+    .env:
       GOREST_TOKEN: ${{ secrets.GOREST_TOKEN }}
     steps:
     - uses: actions/checkout@v4
